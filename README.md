@@ -26,9 +26,9 @@ To view the report, download the `10Genes_DE_GSE21942.html` file and open it in 
 - Differential expression analysis conducted using the limma package, which applies linear models and empirical Bayes moderation to estimate expression differences
 - Visualizations (volcano plot and bar plot) generated with ggplot2 to illustrate statistical significance and fold changes for the selected genes
 
-## 🔍 Key Statistical Measures Explained
+## Key Statistical Measures Explained
 
-### 🔹 logFC (Log Fold Change)
+### logFC (Log Fold Change)
 The `logFC` represents the log base 2 fold change in gene expression between groups (e.g., MS vs Control). A positive value indicates upregulation in MS, while a negative value indicates downregulation. For example, a logFC of +1 means the gene is expressed twice as much in MS compared to controls. It reflects both **direction** and **magnitude** of expression change.
 
 ### P.Value (Raw p-value)
