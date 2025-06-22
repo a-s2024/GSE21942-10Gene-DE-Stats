@@ -5,6 +5,14 @@ This mini project performs differential gene expression analysis on 10 selected 
 
 The main aim is to understand and demonstrate common statistical measures used in gene expression analysis — including log fold change (logFC), p-value, adjusted p-value (FDR), t-statistic, and B-statistic — and to visualize their interpretation using volcano and bar plots.
 
+## Files
+
+- The **R Markdown** file (.Rmd) combines code, output, and narrative in a single document, making it ideal for reproducible reports and detailed explanations.
+- The **HTML** file is the rendered output of the R Markdown file, providing a user-friendly, interactive report viewable in any web browser.
+- The **R Script** (.R) contains only the code for quick execution and easy integration into automated workflows or pipelines.
+
+Including all three formats provides flexibility for different users and use cases—from reading and sharing results to re-running or modifying the analysis.
+
 ## Viewing the report
 To view the report, download the `10Genes_DE_GSE21942.html` file and open it in your web browser.
 
