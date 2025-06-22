@@ -8,7 +8,7 @@ The main aim is to understand and demonstrate common statistical measures used i
 ## Files
 
 - The **R Markdown** file (.Rmd) combines code, output, and narrative in a single document, making it ideal for reproducible reports and detailed explanations.
-- The **HTML** file is the rendered output of the R Markdown file, providing a user-friendly, interactive report viewable in any web browser.
+- The **HTML** file is the rendered output of the R Markdown file, providing a user-friendly report viewable in any web browser.
 - The **R Script** (.R) contains only the code for quick execution and easy integration into automated workflows or pipelines.
 
 Including all three formats provides flexibility for different users and use cases—from reading and sharing results to re-running or modifying the analysis.
