@@ -1,0 +1,141 @@
+---
+title: "Exploring Key Statistical Concepts in Differential Gene Expression Analysis: GSE21942"
+author: "github: a-s2024"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+library(GEOquery)
+library(limma)
+library(ggplot2)
+```
+
+## Introduction
+
+- This mini project demonstrates key statistical concepts used in differential gene expression analysis using the GSE21942 dataset, which includes peripheral blood mononuclear cells from Multiple Sclerosis patients and controls. For simplicity, the analysis focuses on the first 10 genes only.
+
+- **Data source:**  
+GSE21942, Gene Expression Omnibus (GEO) dataset of peripheral blood mononuclear cells from Multiple Sclerosis patients and controls.  
+Reference: Kemppinen AK et al., BMJ Open 2011.
+
+## Methods
+
+- Data normalized and log-transformed by GEO.
+- Differential expression analyzed using limma linear modeling and empirical Bayes moderation.
+- Statistical significance defined by adjusted p-value < 0.05.
+- Visualizations created using ggplot2.
+
+
+## Load data and preprocessing
+
+```{r load-data}
+# Load the dataset from GEO
+gset <- getGEO("GSE21942", GSEMatrix = TRUE)[[1]]
+
+# Subset expression data for first 10 genes
+exprs_small <- exprs(gset)[1:10, ]
+
+# Define sample groups: 15 Controls followed by 14 MS
+group <- factor(c(rep("Control", 15), rep("MS", 14)))
+
+# Sanity check
+stopifnot(length(group) == ncol(exprs_small))
+
+# Create the design matrix
+design <- model.matrix(~ group)
+
+```
+
+## Differential Expression Analysis
+
+```{r DEA}
+
+# Fit linear model to each gene and perform empirical Bayes moderation
+fit <- lmFit(exprs_small, design)
+fit <- eBayes(fit)
+
+# Extract all genes ranked by evidence of differential expression
+results <- topTable(fit, coef = 2, number = Inf)
+
+
+# View key statistics
+results[, c("logFC", "P.Value", "adj.P.Val", "t", "B")]
+```
+
+### Explanation of key statistics:
+
+- **logFC (log Fold Change)**: Log base 2 fold change in expression between MS and Control. Positive values indicate upregulation in MS; negative values indicate downregulation.
+
+- **P.Value**: The raw p-value from the moderated t-test, indicating the significance of the observed difference.
+
+- **adj.P.Val**: P-value adjusted for multiple testing (false discovery rate), controlling for false positives.
+
+- **t**: Moderated t-statistic reflecting the strength of differential expression.
+
+- **B**: Log-odds that the gene is differentially expressed (higher means more confidence).
+
+
+## Volcano Plot
+```{r volcano_plot}
+ggplot(results, aes(x = logFC, y = -log10(P.Value), color = adj.P.Val < 0.05 & abs(logFC) > 1)) +
+  geom_point(size = 3) +
+  scale_color_manual(values = c("grey", "red")) +
+  geom_vline(xintercept = c(-1, 1), linetype = "dashed") +
+  geom_hline(yintercept = -log10(0.05), linetype = "dashed", color = "blue") +
+  theme_minimal() +
+  ggtitle("Volcano Plot (Top 10 Genes)") +
+  xlab("Log2 Fold Change") +
+  ylab("-log10(P-value)") +
+  guides(color = guide_legend(title = "Significant"))
+
+```
+
+- The x-axis shows the magnitude and direction of gene expression changes.
+- The y-axis shows statistical significance (higher = more significant).
+- Genes outside the vertical dashed lines have fold changes > 2 or < 0.5 (since log2FC of ±1 means 2-fold change).
+- Genes above the horizontal red dashed line have p-values less than 0.05, indicating statistical significance.
+- This plot helps identify genes with both biologically meaningful and statistically significant changes.
+
+## Bar Plot of log Fold Change for Top Genes
+```{r bar_plot}
+# Order genes by absolute logFC descending
+top_genes <- results[order(-abs(results$logFC)), ]
+
+# Reverse order so biggest absolute logFC appears at top after coord_flip()
+top_genes$Gene <- factor(rownames(top_genes), levels = rev(rownames(top_genes)))
+
+ggplot(top_genes, aes(x = Gene, y = logFC)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  coord_flip() +
+  theme_minimal() +
+  xlab("Gene") +
+  ylab("Log2 Fold Change") +
+  ggtitle("Top 10 Genes by Absolute logFC (Descending)")
+```
+
+### Interpretation of Bar Plot:
+- This plot shows the direction (up or down) and magnitude of expression changes for each gene.
+- Bars extending to the right indicate genes upregulated in MS; bars to the left indicate downregulation.
+- It visually ranks genes by their fold change.
+
+### Explanation:
+- We sort genes by `-abs(logFC)` so largest changes (up or down) are first.
+- The `factor` on `Gene` ensures ggplot plots genes in this order on the y-axis.
+- Bar heights show the signed logFC (positive bars = upregulated, negative bars = downregulated).
+
+## Genes Analyzed
+The 10 genes analyzed in this project are:
+```{r 10_genes}
+gene_names <- rownames(exprs_small)
+cat("The 10 genes analyzed are:\n", paste(gene_names, collapse = ", "))
+```
+
+## Conclusion
+This mini project showcased key statistical metrics commonly used in bioinformatics differential expression analysis: log fold change, p-values, adjusted p-values, t-statistics, and B-statistics. Visualizations like volcano and bar plots help interpret and prioritize genes of interest.
+
+
+
+
+
