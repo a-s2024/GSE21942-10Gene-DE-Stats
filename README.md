@@ -26,6 +26,9 @@ To view the report, download the `10Genes_DE_GSE21942.html` file and open it in 
 - Differential expression analysis conducted using the limma package, which applies linear models and empirical Bayes moderation to estimate expression differences
 - Visualizations (volcano plot and bar plot) generated with ggplot2 to illustrate statistical significance and fold changes for the selected genes
 
+## Project Aim
+This project aims to provide a clear and practical understanding of how differential expression analysis works in bioinformatics using a manageable subset of data. By focusing on 10 genes, the project simplifies complex data and highlights the interpretation of essential statistical outputs and visualizations, making it ideal for beginners and for educational purposes.
+
 ## Key Statistical Measures Explained
 
 ### logFC (Log Fold Change)
@@ -42,9 +45,6 @@ The `t` value is a t-statistic adjusted using information from all genes, making
 
 ### B (Log-Odds Score)
 The `B` statistic represents the log-odds that a gene is truly differentially expressed. Higher B values indicate greater **confidence** in the gene’s differential expression. It's useful for **ranking genes** by likelihood of being truly significant.
-
-## Project Aim
-This project aims to provide a clear and practical understanding of how differential expression analysis works in bioinformatics using a manageable subset of data. By focusing on 10 genes, the project simplifies complex data and highlights the interpretation of essential statistical outputs and visualizations, making it ideal for beginners and for educational purposes.
 
 ## How to Run
 1. Open the R Markdown file `10Genes_DE_GSE21942.Rmd` in RStudio.
