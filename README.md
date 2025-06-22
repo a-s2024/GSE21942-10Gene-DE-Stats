@@ -9,7 +9,7 @@ The main aim is to understand and demonstrate common statistical measures used i
 To view the report, download the `10Genes_DE_GSE21942.html` file and open it in your web browser.
 
 ## Dataset
-- Source: GSE21942 from Gene Expression Omnibus (GEO)
+- Source: [GSE21942](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE21942) dataset from the NCBI Gene Expression Omnibus (GEO)
 - Samples: Peripheral blood mononuclear cells from 15 healthy controls and 14 Multiple Sclerosis patients
 - Genes: Analysis is limited to the first 10 genes to simplify interpretation and focus on the key statistics
 
