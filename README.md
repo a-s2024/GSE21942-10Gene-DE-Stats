@@ -5,6 +5,8 @@ This mini project performs differential gene expression analysis on 10 selected 
 
 The main aim is to understand and demonstrate common statistical measures used in gene expression analysis — including log fold change (logFC), p-value, adjusted p-value (FDR), t-statistic, and B-statistic — and to visualize their interpretation using volcano and bar plots.
 
+[View the full analysis report](./10Genes_DE_GSE21942.html)
+
 ## Dataset
 - Source: GSE21942 from Gene Expression Omnibus (GEO)
 - Samples: Peripheral blood mononuclear cells from 15 healthy controls and 14 Multiple Sclerosis patients
