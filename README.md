@@ -1,4 +1,4 @@
-# MS-DE-Analysis-10Genes-GSE21942
+# Exploring Key Statistical Concepts in Differential Gene Expression Analysis: GSE21942
 
 ## Project Overview
 This mini project performs differential gene expression analysis on 10 selected genes from the Multiple Sclerosis dataset GSE21942, which contains gene expression profiles from peripheral blood mononuclear cells of Multiple Sclerosis patients and healthy controls. The focus on just 10 genes allows for a simplified exploration of key bioinformatics statistical concepts without overwhelming complexity.
