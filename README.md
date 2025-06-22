@@ -11,7 +11,7 @@ The main aim is to understand and demonstrate common statistical measures used i
 - The **HTML** file is the rendered output of the R Markdown file, providing a user-friendly report viewable in any web browser.
 - The **R Script** (.R) contains only the code for quick execution and easy integration into automated workflows or pipelines.
 
-Including all three formats provides flexibility for different users and use cases—from reading and sharing results to re-running or modifying the analysis.
+Including all three formats provides flexibility.
 
 ## Viewing the report
 To view the report, download the `10Genes_DE_GSE21942.html` file and open it in your web browser.
